@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>PETSHOP</title>
+</head>
+<body>
+    <header>
+        <h1>Listar todos os Pets</h1>
+    </header>
+    <nav>
+        <a href="./index.html">Listar todos</a>
+        <a href="./form.html">Cadastrar</a>
+    </nav>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nome</th>
+                    <th>Raça</th>
+                    <th>Nascimento</th>
+                </tr>
+            </thead>
+            <tbody id="dados">
+            </tbody>
+        </table>
+    </main>
+    <footer>by João</footer>
+</body>
+<script>
+    const dados = document.getElementById('dados');
+    fetch('http://localhost:3000/petshop')
+        .then(res => res.json())
+        .then(res => {
+            res.forEach(cli => {
+                dados.innerHTML += `
+                    <tr>
+                        <td>${cli.id}</td>
+                        <td>${cli.nome}</td>
+                        <td>${cli.raca}</td>
+                        <td>${cli.nascimento}</td>
+                    </tr>
+                `;
+            });
+        });
+</script>
+</html>
