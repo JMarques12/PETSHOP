@@ -18,10 +18,11 @@ const teste = (req, res) => {
 
 //CRUD - create
 const create = (req, res) => {
-    let nome = req.body.nome;
-    let nascimento = req.body.nascimento;
-    let raca = req.body.raca;
-    let query = `INSERT INTO petshop(nome, raca, nascimento) VALUE`;
+    let nome = req.query.nome;
+    let raca = req.query.raca;
+    let nascimento = req.query.nascimento;
+    
+    let query = `INSERT INTO pets(nome, raca, nascimento) VALUE`;
     query += `( '${nome}','${raca}', '${nascimento}');`;
     con.query(query,(err, result)=>{
         if(err)
@@ -33,7 +34,7 @@ const create = (req, res) => {
 
 //CRUD - Read
 const read = (req, res) => {
-    con.query("SELECT * FROM petshop",(err, result)=>{
+    con.query("SELECT * FROM pets",(err, result)=>{
         if(err)
             res.json(err);
         else
@@ -49,8 +50,8 @@ app.use(bodyparser.urlencoded({ extende: true }));
 
 //Rotas de Saída - FrontEnd
 app.get("/", teste);
-app.post("/Pets", create);
-app.get("/Pets", read);
+app.post("/pets", create);
+app.get("/pets", read);
 
 //Teste e porta no console
 app.listen(3000, () => {

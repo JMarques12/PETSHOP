@@ -32,7 +32,7 @@
 </body>
 <script>
     const dados = document.getElementById('dados');
-    fetch('http://localhost:3000/petshop')
+    fetch('http://localhost:3000/pets')
         .then(res => res.json())
         .then(res => {
             res.forEach(cli => {
